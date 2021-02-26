@@ -11,12 +11,12 @@ var _react = require("react");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var isDeepEquals = function isDeepEquals(toCompare, reference) {
+const isDeepEquals = (toCompare, reference) => {
   return _lodash.default.isEqual(toCompare, reference);
 };
 
-var useDeepCompareMemo = function useDeepCompareMemo(dependencies) {
-  var ref = (0, _react.useRef)(null);
+const useDeepCompareMemo = dependencies => {
+  const ref = (0, _react.useRef)(null);
 
   if (isDeepEquals(dependencies, ref.current)) {
     ref.current = dependencies;
@@ -27,7 +27,7 @@ var useDeepCompareMemo = function useDeepCompareMemo(dependencies) {
 // It works like useEffect but we are using isEqual from lodash to compares deeply
 
 
-var useDeepCompareEffect = function useDeepCompareEffect(callback, dependencies) {
+const useDeepCompareEffect = (callback, dependencies) => {
   (0, _react.useEffect)(callback, useDeepCompareMemo(dependencies));
 };
 
